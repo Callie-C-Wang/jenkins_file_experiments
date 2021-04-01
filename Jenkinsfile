@@ -1,9 +1,15 @@
 pipeline {
   agent any
   stages {
-    stage('') {
+    stage('Sync Codes') {
       steps {
-        git(url: 'https://github.com/Callie-C-Wang/jenkins_file_experiments.git', branch: 'main')
+        echo 'Run git pull'
+      }
+    }
+
+    stage('Test') {
+      steps {
+        echo 'Run pytest'
       }
     }
 
