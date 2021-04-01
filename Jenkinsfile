@@ -13,5 +13,11 @@ pipeline {
       }
     }
 
+    stage('Report') {
+      steps {
+        echo 'Generate allure report'
+      }
+    }
+
   }
 }
