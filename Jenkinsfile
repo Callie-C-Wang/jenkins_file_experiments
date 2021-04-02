@@ -1,17 +1,12 @@
 pipeline {
   agent any
   stages {
-    stage('Build a Docker Container') {
-      steps {
-        echo 'Create a python container in Docker'
-        sh 'docker build -t pythoncontainer .'
-      }
-    }
-    stage('Run a Docker Image') {
-      steps {
-        echo 'Run the python container in Docker'
-        sh 'docker run --rm pythoncontainer'
-      }
+    stage('Test') {
+     steps {
+              container('pythoncontainer') {
+                  sh 'python --version'
+              }
+            }
     }
 
     stage('Report') {
