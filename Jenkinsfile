@@ -4,8 +4,7 @@ pipeline {
   
     stage('Test') {
       steps {
-        docker { image 'pythoncontainer' }
-        sh 'pip --version'
+        echo 'Run test'
       }
     }
 
