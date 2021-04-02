@@ -1,15 +1,11 @@
 pipeline {
   agent any
   stages {
-    stage('Sync Codes') {
-      steps {
-        echo 'Run git pull'
-      }
-    }
-
     stage('Test') {
       steps {
         echo 'Run pytest'
+        sh '''pytest --alluredir=_output_/account_administration_service/allure-results
+allure serve _output_/account_administration_service/allure-results'''
       }
     }
 
