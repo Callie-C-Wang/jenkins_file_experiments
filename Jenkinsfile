@@ -3,13 +3,19 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-        echo 'Run pytest'
+        echo 'Run Test'
       }
     }
 
     stage('Report') {
       steps {
-        echo 'Generate allure report'
+        echo 'Generate Report'
+      }
+    }
+
+    stage('Show Report') {
+      steps {
+        echo 'Show Report'
       }
     }
 
