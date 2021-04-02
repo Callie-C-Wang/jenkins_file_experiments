@@ -4,7 +4,7 @@ pipeline {
     stage('Test') {
       steps {
         echo 'Run Test'
-        sh 'pytest --alluredir=_output_/account_administration_service/allure-results'
+        sh 'python --version'
       }
     }
 
