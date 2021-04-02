@@ -4,12 +4,14 @@ pipeline {
     stage('build') {
         steps {
             sh 'python --version'
+            sh 'pytest --version'
       }
     }
-    
+
     stage('Test') {
       steps {
         echo 'run test'
+        sh 'pytest'
       }
     }
 
