@@ -1,12 +1,11 @@
 pipeline {
-  agent {
-        docker { image 'pythoncontainer' }
-    }
+  agent any
   stages {
   
     stage('Test') {
       steps {
-          sh 'pip --version'
+        docker { image 'pythoncontainer' }
+        sh 'pip --version'
       }
     }
 
