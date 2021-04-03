@@ -13,9 +13,9 @@ pipeline {
             sh 'pip3 install -U pytest'
             sh 'pip3 install allure-pytest'
             sh 'pytest --version'
-            sh 'sudo apt-get install software-properties-common ppa:qameta/allure'
-            sh 'sudo apt-get update'
-            sh 'sudo apt-get install allure'
+            sh 'curl -o allure-2.13.9.tgz -Ls https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.6.0/allure-2.6.0.tgz'
+            sh 'sudo tar -zxvf allure-2.13.9.tgz -C /opt/'
+            sh 'sudo ln -s /opt/allure-2.13.9/bin/allure /usr/bin/allure'
             sh 'allure --version'
       }
     }
