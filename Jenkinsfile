@@ -13,7 +13,8 @@ pipeline {
             sh 'pip3 install -U pytest'
             sh 'pip3 install allure-pytest'
             sh 'pytest --version'
-            sh 'sudo apt-add-repository ppa:qameta/allure'
+            sh 'sudo apt-get install software-properties-common ppa:qameta/allure'
+            sh 'sudo apt-get update'
             sh 'sudo apt-get install allure'
             sh 'allure --version'
       }
