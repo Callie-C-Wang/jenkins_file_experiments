@@ -1,6 +1,6 @@
 pipeline {
   agent { docker { image 'python:3.9.1'
-                   args '-p 33333:33333' } }
+                   args '-p 33333:33333 --name python_image' } }
   stages {
 
     stage('Build Phase One') {
@@ -44,6 +44,7 @@ pipeline {
   post {
         always {
             archiveArtifacts artifacts: '_output_/allure-report/**/*.*', fingerprint: true
+            sh 'docker cp jenkins:/var/jenkins_home/workspace/my_pipeline_main/_output_/allure-report /api_test_report/allure-report'
         }
     }
 }
