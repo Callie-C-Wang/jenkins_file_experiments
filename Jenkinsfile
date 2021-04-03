@@ -25,6 +25,7 @@ pipeline {
     }
 
     stage('Test') {
+      agent { docker { image 'python:3.9.1' } }
       steps {
         echo 'run test'
         sh 'python -m pytest'
@@ -32,12 +33,14 @@ pipeline {
     }
 
     stage('Gen Report') {
+      agent { docker { image 'python:3.9.1' } }
       steps {
         echo 'Generate Report'
       }
     }
 
     stage('Show Report') {
+      agent { docker { image 'python:3.9.1' } }
       steps {
         echo 'Show Report'
       }
