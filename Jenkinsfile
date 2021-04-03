@@ -4,6 +4,7 @@ pipeline {
     stage('build') {
         steps {
             sh 'python --version'
+            sh 'pip3 --version'
             sh 'pytest --version'
       }
     }
@@ -11,7 +12,7 @@ pipeline {
     stage('Test') {
       steps {
         echo 'run test'
-        sh 'pytest'
+        sh 'python -m pytest'
       }
     }
 
