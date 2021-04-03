@@ -1,6 +1,15 @@
 pipeline {
   agent none
   stages {
+
+    stage('Build Phase Two') {
+      agent { docker { image 'node:14-alpine' } }
+      steps {
+        sh 'node --version'
+        sh 'npm install -g allure-commandline'
+      }
+    }
+    
     stage('Build Phase One') {
         agent { docker { image 'python:3.9.1' } }
         steps {
@@ -13,14 +22,6 @@ pipeline {
             sh 'pip3 install -U pytest'
             sh 'pip3 install allure-pytest'
             sh 'pytest --version'
-      }
-    }
-
-    stage('Build Phase Two') {
-      agent { docker { image 'node:14-alpine' } }
-      steps {
-        sh 'node --version'
-        sh 'npm install -g allure-commandline'
       }
     }
 
