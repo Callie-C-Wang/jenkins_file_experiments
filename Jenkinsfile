@@ -7,7 +7,7 @@ pipeline {
 
   }
   stages {
-    stage('Build Phase One') {
+    stage('Build') {
       steps {
         sh 'python --version'
         sh 'apt-get update && apt-get install -y sudo'
@@ -43,20 +43,19 @@ pipeline {
       }
     }
 
-    stage('Copy Report') {
-      steps {
-        dockerNode(image: 'jenkins') {
-          powershell 'cp jenkins:/var/jenkins_home/workspace/my_pipeline_main/_output_/allure-report /api_test_report/allure-report'
-        }
+    // stage('Copy Report') {
+    //   steps {
+    //     dockerNode(image: 'jenkins') {
+    //       powershell 'cp jenkins:/var/jenkins_home/workspace/my_pipeline_main/_output_/allure-report /api_test_report/allure-report'
+    //     }
 
-      }
-    }
+    //   }
+    // }
 
   }
   post {
     always {
       archiveArtifacts(artifacts: '_output_/allure-report/**/*.*', fingerprint: true)
-      sh 'docker cp jenkins:/var/jenkins_home/workspace/my_pipeline_main/_output_/allure-report /api_test_report/allure-report'
     }
 
   }
