@@ -9,6 +9,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        echo 'Trying to install python, pytest, allure in container ......'
         sh 'python --version'
         sh 'apt-get update && apt-get install -y sudo'
         sh 'sudo apt-get update'
@@ -30,23 +31,23 @@ pipeline {
 
     stage('Test') {
       steps {
-        echo 'run test'
+        echo 'Run tests ......'
         sh 'python -m pytest --alluredir=_output_/allure-results'
       }
-    }
-
-    stage('Gen Report') {
-      steps {
-        echo 'Generate Report'
-        sh 'cp -R _output_/allure-report/history _output_/allure-results/history'
-        sh 'allure generate --clean _output_/allure-results -o _output_/allure-report'
-        sh 'allure generate --clean _output_/allure-results -o /api_test_report/allure-report'
+      post {
+        always {
+          echo 'Always generate an allure report ......'
+          sh 'cp -R _output_/allure-report/history _output_/allure-results/history'
+          sh 'allure generate --clean _output_/allure-results -o _output_/allure-report'
+          sh 'allure generate --clean _output_/allure-results -o /api_test_report/allure-report'
+        }
       }
     }
   }
 
   post {
     always {
+      echo 'Always archive an allure report ......'
       archiveArtifacts(artifacts: '_output_/allure-report/**/*.*', fingerprint: true)
     }
   }
