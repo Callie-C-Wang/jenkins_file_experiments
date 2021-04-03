@@ -1,21 +1,21 @@
-FROM ubuntu
-USER root
-RUN sudo apt update && sudo apt upgrade
-RUN sudo apt install curl
-RUN curl --version
+# FROM ubuntu
+# USER root
+# RUN sudo apt update && sudo apt upgrade
+# RUN sudo apt install curl
+# RUN curl --version
 
-# Get the python 3.9.1 base docker image
-FROM python:3.9.1
-USER root
-RUN sudo apt-get -y install python3-pip
-RUN pip3 --version
-RUN pip3 install requests
-RUN pip3 install -U pytest
-RUN pip3 install allure-pytest
-CMD ["python", "-c", "print('Hi This is an experiment')"]
-COPY test_sample.py /
-COPY hello_world.py /
-CMD ["python", "hello_world.py"]
+# # Get the python 3.9.1 base docker image
+# FROM python:3.9.1
+# USER root
+# RUN sudo apt-get -y install python3-pip
+# RUN pip3 --version
+# RUN pip3 install requests
+# RUN pip3 install -U pytest
+# RUN pip3 install allure-pytest
+# CMD ["python", "-c", "print('Hi This is an experiment')"]
+# COPY test_sample.py /
+# COPY hello_world.py /
+# CMD ["python", "hello_world.py"]
 
 
 # Get jenkins image
