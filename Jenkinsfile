@@ -38,7 +38,7 @@ pipeline {
     stage('Gen Report') {
       steps {
         echo 'Generate Report'
-        sh 'cp -R _output_/allure-report/history _output_/allure-results/history'
+        // sh 'cp -R _output_/allure-report/history _output_/allure-results/history'
         sh 'allure generate --clean _output_/allure-results -o _output_/allure-report'
       }
     }
