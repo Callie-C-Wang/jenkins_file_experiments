@@ -41,11 +41,10 @@ pipeline {
       }
     }
 
-    stage('Show Report') {
-      steps {
-        echo 'Show Report'
-      }
-    }
-
   }
+  post {
+        always {
+            archiveArtifacts artifacts: '_output_/allure-report/**/*.*', fingerprint: true
+        }
+    }
 }
