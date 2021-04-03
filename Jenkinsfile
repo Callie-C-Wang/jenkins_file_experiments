@@ -26,6 +26,7 @@ pipeline {
     stage('Gen Report') {
       steps {
         echo 'Generate Report'
+        sh 'allure generate --clean _output_/allure-results -o _output_/allure-report'
       }
     }
 
