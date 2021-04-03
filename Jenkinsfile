@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'python:3.9.1'
-      args '-p 33333:33333 --name python_image'
+      args '-p 33333:33333 --name python_container'
     }
   }
 
