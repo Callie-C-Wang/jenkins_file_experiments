@@ -17,8 +17,9 @@ pipeline {
     }
 
     stage('Build Phase Two') {
-      agent { docker { image 'node-14' } }
+      agent { docker { image 'node:14-alpine' } }
       steps {
+        sh 'node --version'
         sh 'npm install -g allure-commandline'
       }
     }
