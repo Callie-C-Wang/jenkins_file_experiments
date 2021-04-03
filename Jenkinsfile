@@ -19,7 +19,7 @@ pipeline {
             sh 'curl -o allure-2.13.9.tgz -Ls https://github.com/allure-framework/allure2/releases/download/2.13.9/allure-2.13.9.tgz'
             sh 'sudo tar -zxvf allure-2.13.9.tgz -C /opt/'
             sh 'sudo ln -s /opt/allure-2.13.9/bin/allure /usr/bin/allure'
-            sh '/opt/allure-2.13.9/bin/allure --version'
+            sh 'allure --version'
       }
     }
 
@@ -33,7 +33,9 @@ pipeline {
     stage('Gen Report') {
       steps {
         echo 'Generate Report'
+        sh 'cp -R _output_/allure-report/history _output_/allure-results/history'
         sh 'allure generate --clean _output_/allure-results -o _output_/allure-report'
+        sh 'allure open _output_/allure-report'
       }
     }
 
