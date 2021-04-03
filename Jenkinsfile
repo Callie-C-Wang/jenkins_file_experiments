@@ -4,8 +4,8 @@ pipeline {
       image 'python:3.9.1'
       args '-p 33333:33333 --name python_image'
     }
-
   }
+
   stages {
     stage('Build') {
       steps {
@@ -42,21 +42,11 @@ pipeline {
         sh 'allure generate --clean _output_/allure-results -o /api_test_report/allure-report'
       }
     }
-
-    // stage('Copy Report') {
-    //   steps {
-    //     dockerNode(image: 'jenkins') {
-    //       powershell 'cp jenkins:/var/jenkins_home/workspace/my_pipeline_main/_output_/allure-report /api_test_report/allure-report'
-    //     }
-
-    //   }
-    // }
-
   }
+
   post {
     always {
       archiveArtifacts(artifacts: '/api_test_report/allure-report/**/*.*', fingerprint: true)
     }
-
   }
 }
