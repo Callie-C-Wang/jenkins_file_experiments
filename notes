@@ -1,4 +1,0 @@
-# Create a docker image which can run python
-docker build -t pythoncontainer .
-# Run this docker image
-docker run --rm pythoncontainer

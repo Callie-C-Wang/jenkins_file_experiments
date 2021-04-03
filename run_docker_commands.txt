@@ -1,3 +1,27 @@
 docker build -t myjenkins .
 docker run -ti -v /var/run/docker.sock:/var/run/docker.sock --privileged --name jenkins -p 8080:8080 -p 50000:50000 -u root myjenkins:latest
 docker run -ti -v /var/run/docker.sock:/var/run/docker.sock --privileged --name jenkins -p 8080:8080 -p 33333:33333 -p 50000:50000 -u root myjenkins:latest
+
+
+
+ docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+--interactive , -i		Keep STDIN open even if not attached
+--tty , -t		Allocate a pseudo-TTY
+--volume , -v		Bind mount a volume
+--privileged		Give extended privileges to this container
+--name		Assign a name to the container
+--publish , -p		Publish a container's port(s) to the host
+--user , -u		Username or UID (format: <name|uid>[:<group|gid>])
+
+ The -it instructs Docker to allocate a pseudo-TTY connected to the container’s stdin; creating an interactive bash shell in the container.
+
+ look the ip address of container’s
+
+ docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jenkins
+
+
+ # Create a docker image which can run python
+docker build -t pythoncontainer .
+# Run this docker image
+docker run --rm pythoncontainer
