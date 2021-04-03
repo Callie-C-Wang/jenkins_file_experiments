@@ -4,6 +4,8 @@ pipeline {
     stage('build') {
         steps {
             sh 'python --version'
+            sh 'apt-get update && apt-get install -y sudo'
+            sh 'sudo apt-get update'
             sh 'sudo apt-get -y install python3-pip'
             sh 'pip3 --version'
             sh 'pip3 install requests'
