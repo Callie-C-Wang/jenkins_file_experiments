@@ -19,7 +19,7 @@ pipeline {
     stage('Test') {
       steps {
         echo 'run test'
-        sh 'python -m pytest'
+        sh 'python -m pytest account_administration_service --alluredir=_output_/account_administration_service/allure-results'
       }
     }
 
