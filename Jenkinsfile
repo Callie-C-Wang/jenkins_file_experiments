@@ -39,6 +39,7 @@ pipeline {
       steps {
         echo 'Generate Report'
         // sh 'cp -R _output_/allure-report/history _output_/allure-results/history'
+        sh 'allure generate --clean _output_/allure-results -o _output_/allure-report'
         sh 'allure generate --clean _output_/allure-results -o /api_test_report/allure-report'
       }
     }
@@ -46,7 +47,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts(artifacts: '/api_test_report/allure-report', fingerprint: true)
+      archiveArtifacts(artifacts: '_output_/allure-report/**/*.*', fingerprint: true)
     }
   }
 }
