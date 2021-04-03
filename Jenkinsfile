@@ -46,7 +46,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts(artifacts: '/api_test_report/allure-report/**/*.*', fingerprint: true)
+      archiveArtifacts(artifacts: '/pos_api_test_report/allure-report/**/*.*', fingerprint: true)
     }
   }
 }
