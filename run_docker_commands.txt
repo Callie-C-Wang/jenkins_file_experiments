@@ -1,5 +1,5 @@
 docker build -t myjenkins .
-docker run -ti -v /var/run/docker.sock:/var/run/docker.sock -v /api_test_report/allure-report:/api_test_report/allure-report --privileged --name jenkins -p 8080:8080 -p 50000:50000 -u root myjenkins:latest
+docker run -t -v /var/run/docker.sock:/var/run/docker.sock -v c:/:/api_test_report/allure-report --privileged --name jenkins -p 8080:8080 -p 50000:50000 -u root myjenkins:latest
 
 
  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
