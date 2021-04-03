@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+  agent { docker { image 'python:3.9.1' } }
   stages {
 
     stage('Build Phase Two') {
@@ -9,9 +9,8 @@ pipeline {
         sh 'npm install -g allure-commandline'
       }
     }
-    
+
     stage('Build Phase One') {
-        agent { docker { image 'python:3.9.1' } }
         steps {
             sh 'python --version'
             sh 'apt-get update && apt-get install -y sudo'
@@ -26,7 +25,6 @@ pipeline {
     }
 
     stage('Test') {
-      agent { docker { image 'python:3.9.1' } }
       steps {
         echo 'run test'
         sh 'python -m pytest'
@@ -34,14 +32,12 @@ pipeline {
     }
 
     stage('Gen Report') {
-      agent { docker { image 'python:3.9.1' } }
       steps {
         echo 'Generate Report'
       }
     }
 
     stage('Show Report') {
-      agent { docker { image 'python:3.9.1' } }
       steps {
         echo 'Show Report'
       }
