@@ -32,21 +32,15 @@ pipeline {
     stage('Test') {
       steps {
         echo 'Run tests ......'
-        sh 'python -m pytest --alluredir=target/allure-results'
+        sh 'python -m pytest --alluredir=_output_/allure-results'
       }
       post {
-          always {
-            script {
-              allure([
-                includeProperties: false,
-                jdk: '',
-                properties: [],
-                reportBuildPolicy: 'ALWAYS',
-                results: [[path: 'target/allure-results']],
-                report:'target/allure-report'
-              ])
-            }
-          }
+        always {
+          echo 'Always generate an allure report ......'
+          sh 'cp -R _output_/allure-report/history _output_/allure-results/history'
+          sh 'allure generate --clean _output_/allure-results -o _output_/allure-report'
+          sh 'allure generate --clean _output_/allure-results -o /api_test_report/allure-report'
+        }
       }
     }
   }
@@ -54,7 +48,7 @@ pipeline {
   post {
     always {
       echo 'Always archive an allure report ......'
-      archiveArtifacts(artifacts: 'target/allure-report/**/*.*', fingerprint: true)
+      archiveArtifacts(artifacts: '_output_/allure-report/**/*.*', fingerprint: true)
     }
   }
 }
