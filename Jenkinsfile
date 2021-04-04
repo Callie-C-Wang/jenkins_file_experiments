@@ -33,6 +33,7 @@ pipeline {
       steps {
         echo 'Run tests ......'
         sh 'python -m pytest --alluredir=_output_/allure-results'
+        sh 'python -m pytest --alluredir=target/allure-results'
       }
       post {
         always {
@@ -40,6 +41,21 @@ pipeline {
           sh 'cp -R _output_/allure-report/history _output_/allure-results/history'
           sh 'allure generate --clean _output_/allure-results -o _output_/allure-report'
           sh 'allure generate --clean _output_/allure-results -o /api_test_report/allure-report'
+        }
+      }
+    }
+
+    stage('Allure Results and Reports') {
+      steps {
+        script {
+          allure([
+                  includeProperties: false,
+                  jdk: '',
+                  properties: [],
+                  reportBuildPolicy: 'ALWAYS',
+                  results: [[path: 'target/allure-results']],
+                  report: 'target/allure-report'
+                ])
         }
       }
     }
