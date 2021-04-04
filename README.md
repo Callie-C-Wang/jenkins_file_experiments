@@ -52,6 +52,10 @@ click "Available" tab page and search "Blue Ocean"
 
 choose "Blue Ocean"
 
+click "Available" tab page and search "Allure"
+
+choose "Allure"
+
 click "Install without restart"
 
 then choose "Restart Jenkins when installation is complete and no jobs are running"
@@ -72,7 +76,11 @@ choose "GitHub" if you have any pytest public git project or just put the git li
 
 then click save and wait for this job to build automatically
 
-the first build should pass
+the first build should fail
+
+go to "Manage Jenkins" -> "Global Tool Configuration"
+
+go to bottom, click "Allure Commandline installations", choose install automatically and choose the default allure command line version. Give any name you like to this Allure Commandline and click "Save"
 
 ## Allure report
 
