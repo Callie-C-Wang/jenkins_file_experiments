@@ -50,11 +50,4 @@ pipeline {
       }
     }
   }
-
-  post {
-    always {
-      echo 'Always archive an allure report ......'
-      archiveArtifacts(artifacts: 'target/allure-report/**/*.*', fingerprint: true)
-    }
-  }
 }
