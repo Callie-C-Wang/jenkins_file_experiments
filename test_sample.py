@@ -5,7 +5,7 @@ def func(x):
 
 
 def test_answer_sample_of_failure():
-    assert func(3) == 5
+    assert func(4) == 5
 
 
 def test_answer_sample_of_success():
