@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'python:3.9.1'
+      image 'python:3.9.3'
       args '-p 33333:33333 --name python_container'
     }
   }
