@@ -3,15 +3,15 @@ def func(x):
 
 
 def test_answer_sample_of_failure_1():
-    assert func(4) == 5
+    assert func(1) == 5
 
 
 def test_answer_sample_of_failure_2():
-    assert func(4) == 5
+    assert func(2) == 5
 
 
 def test_answer_sample_of_failure_3():
-    assert func(4) == 5
+    assert func(3) == 5
 
 
 def test_answer_sample_of_success_1():
