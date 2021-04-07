@@ -34,5 +34,9 @@ def test_answer_sample_of_success_5():
     assert func(8) == 9
 
 
-def test_answer_sample_of_success_3():
+def test_answer_sample_of_success_6():
     assert func(9) == 10
+
+
+def test_answer_sample_of_success_7():
+    assert func(10) == 11

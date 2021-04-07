@@ -32,12 +32,13 @@ pipeline {
     stage('Test') {
       steps {
         echo 'Run tests ......'
+        sh 'whoami'
         sh 'python -m pytest --alluredir=target/allure-results'
         sh 'ls -la target/allure-results'
-        sh 'whoami'
       }
       post {
           always {
+            echo 'Generate an allure report ......'
             sh 'ls -la target/allure-results'
             sh 'whoami'
             allure includeProperties: false, jdk: '', report: 'target/allure-report', results: [[path: 'target/allure-results']]

@@ -1,23 +1,34 @@
+# build docker image and launch a container
 docker build -t myjenkins .
 docker run -t -v /var/run/docker.sock:/var/run/docker.sock -v c:/pos_api_test_report/allure-report:/api_test_report/allure-report --privileged --name jenkins -p 8080:8080 -p 50000:50000 -u root myjenkins:latest
 
+# the options in the docker command line
 docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 
---interactive , -i		Keep STDIN open even if not attached
---tty , -t		Allocate a pseudo-TTY
+--interactive , -i	Keep STDIN open even if not attached
+--tty , -t		    Allocate a pseudo-TTY
 --volume , -v		Bind mount a volume
 --privileged		Give extended privileges to this container
---name		Assign a name to the container
+--name		        Assign a name to the container
 --publish , -p		Publish a container's port(s) to the host
---user , -u		Username or UID (format: <name|uid>[:<group|gid>])
+--user , -u		    Username or UID (format: <name|uid>[:<group|gid>])
 
-The -it instructs Docker to allocate a pseudo-TTY connected to the container’s stdin; creating an interactive bash shell in the container.
+The -it instructs Docker to allocate a pseudo-TTY connected to the container’s
+stdin; creating an interactive bash shell in the container.
 
-look the ip address of container’s
+# look the ip address of container’s
 docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' jenkins
 
-
-#Create a docker image which can run python
+# Create a docker image which can run python
 docker build -t pythoncontainer .
+
 # Run this docker image
 docker run --rm pythoncontainer
+
+# how to change permission in a running container
+# -R means Recursively set read
+# a+rw
+# a means All users
+# + means Adds specified permissions
+# rw means read and write permissions
+sh 'chmod -R a+rw target/'
