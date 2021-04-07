@@ -36,16 +36,7 @@ pipeline {
       }
       post {
           always {
-            script {
-              allure([
-                includeProperties: false,
-                jdk: '',
-                properties: [],
-                reportBuildPolicy: 'ALWAYS',
-                results: [[path: 'target/allure-results']],
-                report:'target/allure-report'
-              ])
-            }
+            allure includeProperties: false, jdk: '', report: 'target/allure-report', results: [[path: 'target/allure-results']]
           }
       }
     }
